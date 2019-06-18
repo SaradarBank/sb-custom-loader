@@ -1,5 +1,5 @@
 # Show-Loader-Library
-[![](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16#l16)	[![](https://img.shields.io/badge/Platform-Android-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16#l16)	[![](https://img.shields.io/badge/Language-Kotlin-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16#l16)
+[![](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16#l16)	[![](https://img.shields.io/badge/Platform-Android-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16#l16)	[![](https://img.shields.io/badge/Language-Kotlin-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16#l16)	[![](https://img.shields.io/badge/Version-0.1.0-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16#l16)
 
 An Android library that shows a simple loader.
 
