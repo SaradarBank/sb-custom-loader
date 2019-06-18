@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-        implementation 'com.github.SaradarBank:Show-Loader-Library:0.1.0'   
+        implementation 'com.github.SaradarBank:Show-Loader-Library:0.1.0'
 }
 ```
 Or Maven:
