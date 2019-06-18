@@ -8,28 +8,28 @@ An Android library that shows a simple loader.
 Add the dependency in your `build.gradle`:
 ```groovy
 repositories {
-		maven {
-			url 'https://jitpack.io' 
-		}
+	maven {
+		url 'https://jitpack.io' 
+	}
 }
 
 dependencies {
-        implementation 'com.github.SaradarBank:Show-Loader-Library:0.1.0'
+	implementation 'com.github.SaradarBank:Show-Loader-Library:0.1.0'
 }
 ```
 Or Maven:
 ```groovy
 <repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
 <dependency>
-	    <groupId>com.github.SaradarBank</groupId>
-	    <artifactId>Show-Loader-Library</artifactId>
-	    <version>0.1.0</version>
-	</dependency>
+	<groupId>com.github.SaradarBank</groupId>
+	<artifactId>Show-Loader-Library</artifactId>
+	<version>0.1.0</version>
+</dependency>
 ```
 
 ## Example
