@@ -13,7 +13,7 @@ import android.widget.TextView
 
 class CustomLoader : DialogFragment() {
 
-    private lateinit var message: String
+    private var message: String = ""
 
     companion object {
         var progressBarColor: Int = 0
