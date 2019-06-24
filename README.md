@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'com.github.SaradarBank:Show-Loader-Library:0.1.1'
+	implementation 'com.github.SaradarBank:sb-custom-loader:0.1.1'
 }
 ```
 Or Maven:
@@ -27,7 +27,7 @@ Or Maven:
 </repositories>
 <dependency>
 	<groupId>com.github.SaradarBank</groupId>
-	<artifactId>Show-Loader-Library</artifactId>
+	<artifactId>sb-custom-loader</artifactId>
 	<version>0.1.1</version>
 </dependency>
 ```
