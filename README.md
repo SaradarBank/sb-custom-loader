@@ -1,5 +1,5 @@
 # Show-Loader-Library
-[![](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21#l21)	[![](https://img.shields.io/badge/Platform-Android-brightgreen.svg?style=flat)](https://developer.android.com/about)	[![](https://img.shields.io/badge/Language-Kotlin-brightgreen.svg?style=flat)](https://kotlinlang.org/)	[![](https://img.shields.io/badge/Version-0.1.0-brightgreen.svg?style=flat)](https://git-scm.com/book/en/v1/Getting-Started-About-Version-Control)
+[![](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21#l21)	[![](https://img.shields.io/badge/Platform-Android-brightgreen.svg?style=flat)](https://developer.android.com/about)	[![](https://img.shields.io/badge/Language-Kotlin-brightgreen.svg?style=flat)](https://kotlinlang.org/)	[![](https://img.shields.io/badge/Version-0.1.1-brightgreen.svg?style=flat)](https://git-scm.com/book/en/v1/Getting-Started-About-Version-Control)
 
 An Android library that shows a simple loader.
 
@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'com.github.SaradarBank:Show-Loader-Library:0.1.0'
+	implementation 'com.github.SaradarBank:Show-Loader-Library:0.1.1'
 }
 ```
 Or Maven:
@@ -36,12 +36,20 @@ Or Maven:
 
 1) To show the loader:
 ```java
-val showloading = ShowLoader()
-showloading.setLoaderMessage("Please Wait")
-showloading.show(supportFragmentManager, "")
+val customLoader = CustomLoader()
+customLoader.setLoaderMessage("Please Wait")
+customLoader.show(supportFragmentManager, "")
 ```
-2) To hide the loader:
+
+2) To show the loader with custom tint color:
+```java
+val customLoader = CustomLoader.newInstance(ContextCompat.getColor(this, R.color.lightestGray))
+customLoader.setLoaderMessage("Please Wait")
+customLoader.show(supportFragmentManager, "")
+```
+
+3) To hide the loader:
 
 ```java
-showloading.dismiss()
+customLoader.dismiss()
 ```
