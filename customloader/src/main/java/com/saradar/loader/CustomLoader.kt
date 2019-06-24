@@ -1,6 +1,5 @@
 package com.saradar.loader
 
-import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -11,12 +10,6 @@ import android.widget.TextView
 class CustomLoader : DialogFragment() {
 
     private var message: String? = null
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return object : Dialog(activity!!, theme) {
-            override fun onBackPressed() {}
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
