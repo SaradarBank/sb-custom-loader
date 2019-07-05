@@ -8,8 +8,7 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
+import kotlinx.android.synthetic.main.custom_loader_dialog.view.*
 
 class CustomLoader : DialogFragment() {
 
@@ -31,20 +30,18 @@ class CustomLoader : DialogFragment() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         // region "ProgressBar Color"
-        val pb_customLoader = view.findViewById<ProgressBar>(R.id.pb_customLoader)
         if (progressBarColor != 0) {
-            pb_customLoader.indeterminateTintList = ColorStateList.valueOf(progressBarColor)
+            view.pb_customLoader.indeterminateTintList = ColorStateList.valueOf(progressBarColor)
         }
         // endregion
 
         // region "Loader Message"
-        val tv_loaderMessage = view.findViewById<TextView>(R.id.tv_loaderMessage)
         if (message.isNotEmpty()) {
-            tv_loaderMessage.visibility = View.VISIBLE
-            tv_loaderMessage.text = message
+            view.tv_loaderMessage.visibility = View.VISIBLE
+            view.tv_loaderMessage.text = message
             message = ""
         } else {
-            tv_loaderMessage.visibility = View.GONE
+            view.tv_loaderMessage.visibility = View.GONE
         }
         // endregion
 
