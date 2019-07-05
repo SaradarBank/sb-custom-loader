@@ -1,10 +1,14 @@
 package com.saradar.loader
 
+import android.app.Activity
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,43 +16,98 @@ import kotlinx.android.synthetic.main.custom_loader_dialog.view.*
 
 class CustomLoader : DialogFragment() {
 
-    private var message: String = ""
+    private lateinit var activity: Activity
+    private var loaderColor: Int = 0
+    private var loaderMessage: String = ""
+    private var blockScreen: Boolean = false
 
     companion object {
-        var progressBarColor: Int = 0
 
-        fun newInstance(progressBarColor: Int): CustomLoader {
-            val customLoader = CustomLoader()
-            this.progressBarColor = progressBarColor
+        private lateinit var customLoader: CustomLoader
+
+        fun newInstance(activity: Activity): CustomLoader {
+            customLoader = CustomLoader()
+            customLoader.activity = activity
             return customLoader
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.custom_loader_dialog, null, false)
-
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         // region "ProgressBar Color"
-        if (progressBarColor != 0) {
-            view.pb_customLoader.indeterminateTintList = ColorStateList.valueOf(progressBarColor)
+        if (loaderColor != 0) {
+            view.pb_loader.indeterminateTintList = ColorStateList.valueOf(loaderColor)
         }
         // endregion
 
         // region "Loader Message"
-        if (message.isNotEmpty()) {
+        if (loaderMessage.isNotEmpty()) {
             view.tv_loaderMessage.visibility = View.VISIBLE
-            view.tv_loaderMessage.text = message
-            message = ""
-        } else {
-            view.tv_loaderMessage.visibility = View.GONE
+            view.tv_loaderMessage.text = loaderMessage
+        }
+        // endregion
+
+        // region "Disable Screen Touch"
+        if (blockScreen) {
+            disableScreenTouch()
         }
         // endregion
 
         return view
     }
 
-    fun setLoaderMessage(message: String) {
-        this.message = message
+    // region "Setters"
+    fun setLoaderColor(loaderColor: Int) {
+        this.loaderColor = loaderColor
     }
+
+    fun setLoaderMessage(loaderMessage: String) {
+        this.loaderMessage = loaderMessage
+    }
+
+    fun setBlockScreen(blockScreen: Boolean) {
+        this.blockScreen = blockScreen
+    }
+    // endregion
+
+    fun showLoader(fragmentManager: FragmentManager) {
+        customLoader.show(fragmentManager, "")
+    }
+
+    private fun disableScreenTouch() {
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+    }
+
+    private fun enableScreenTouch() {
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+    }
+
+    private fun resetFlagsToDefault() {
+        enableScreenTouch()
+        blockScreen = false
+        loaderMessage = ""
+        view?.tv_loaderMessage?.visibility = View.GONE
+    }
+
+    // region "Overridden Functions"
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(activity) {
+            override fun onBackPressed() {
+                if (!blockScreen) {
+                    super.onBackPressed()
+                }
+            }
+        }
+    }
+
+    override fun onDismiss(dialog: DialogInterface?) {
+        super.onDismiss(dialog)
+        resetFlagsToDefault()
+    }
+    // endregion
+
 }
