@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             val handler = Handler()
             handler.postDelayed({
                 customLoader.dismiss()
-            }, 2000)
+            }, 5000)
         }
     }
 }
