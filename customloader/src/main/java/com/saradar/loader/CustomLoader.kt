@@ -72,7 +72,7 @@ class CustomLoader : DialogFragment() {
     }
     // endregion
 
-    fun showLoader(fragmentManager: FragmentManager) {
+    fun show(fragmentManager: FragmentManager) {
         customLoader.show(fragmentManager, "")
     }
 

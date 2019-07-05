@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
             val customLoader = CustomLoader.newInstance(this)
             customLoader.setLoaderMessage("Please Wait")
             customLoader.setBlockScreen(true)
-            customLoader.showLoader(supportFragmentManager)
+            customLoader.show(supportFragmentManager)
 
             val handler = Handler()
             handler.postDelayed({
