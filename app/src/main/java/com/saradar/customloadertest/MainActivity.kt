@@ -1,4 +1,4 @@
-package com.saradar.showloading
+package com.saradar.customloadertest
 
 import android.os.Bundle
 import android.os.Handler
@@ -13,9 +13,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btn_show.setOnClickListener {
-            val customLoader = CustomLoader()
+            val customLoader = CustomLoader.newInstance(this)
             customLoader.setLoaderMessage("Please Wait")
-            customLoader.show(supportFragmentManager, "")
+            customLoader.setBlockScreen(true)
+            customLoader.show(supportFragmentManager)
 
             val handler = Handler()
             handler.postDelayed({

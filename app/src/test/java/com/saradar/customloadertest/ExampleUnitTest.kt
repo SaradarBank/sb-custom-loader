@@ -1,4 +1,4 @@
-package com.saradar.showloading
+package com.saradar.customloadertest
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

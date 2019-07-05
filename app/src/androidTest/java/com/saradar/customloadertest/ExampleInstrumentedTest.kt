@@ -1,4 +1,4 @@
-package com.saradar.showloading
+package com.saradar.customloadertest
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.saradar.showloading", appContext.packageName)
+        assertEquals("com.saradar.customloadertest", appContext.packageName)
     }
 }
