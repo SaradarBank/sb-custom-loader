@@ -51,7 +51,7 @@ customLoader.show(supportFragmentManager)
 ```java
 val customLoader = CustomLoader.newInstance(this)
 customLoader.setLoaderColor(R.color.colorAccent)
-customLoader.show(supportFragmentManager
+customLoader.show(supportFragmentManager)
 ```
 
 4) To show the loader and block the screen touches:
