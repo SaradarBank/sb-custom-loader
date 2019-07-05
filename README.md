@@ -1,5 +1,5 @@
 # Show-Loader-Library
-[![](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21#l21)	[![](https://img.shields.io/badge/Platform-Android-brightgreen.svg?style=flat)](https://developer.android.com/about)	[![](https://img.shields.io/badge/Language-Kotlin-brightgreen.svg?style=flat)](https://kotlinlang.org/)	[![](https://img.shields.io/badge/Version-0.1.3-brightgreen.svg?style=flat)](https://git-scm.com/book/en/v1/Getting-Started-About-Version-Control)
+[![](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21#l21)	[![](https://img.shields.io/badge/Platform-Android-brightgreen.svg?style=flat)](https://developer.android.com/about)	[![](https://img.shields.io/badge/Language-Kotlin-brightgreen.svg?style=flat)](https://kotlinlang.org/)	[![](https://img.shields.io/badge/Version-0.2.0-brightgreen.svg?style=flat)](https://git-scm.com/book/en/v1/Getting-Started-About-Version-Control)
 
 An Android library that shows a simple loader.
 
@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'com.github.SaradarBank:sb-custom-loader:0.1.3'
+	implementation 'com.github.SaradarBank:sb-custom-loader:0.2.0'
 }
 ```
 Or Maven:
@@ -28,7 +28,7 @@ Or Maven:
 <dependency>
 	<groupId>com.github.SaradarBank</groupId>
 	<artifactId>sb-custom-loader</artifactId>
-	<version>0.1.3</version>
+	<version>0.2.0</version>
 </dependency>
 ```
 
@@ -36,19 +36,32 @@ Or Maven:
 
 1) To show the loader:
 ```java
-val customLoader = CustomLoader()
-customLoader.setLoaderMessage("Please Wait")
-customLoader.show(supportFragmentManager, "")
+val customLoader = CustomLoader.newInstance(this)
+customLoader.show(supportFragmentManager)
 ```
 
-2) To show the loader with custom tint color:
+2) To show the loader with custom message:
 ```java
-val customLoader = CustomLoader.newInstance(ContextCompat.getColor(this, R.color.lightestGray))
+val customLoader = CustomLoader.newInstance(this)
 customLoader.setLoaderMessage("Please Wait")
-customLoader.show(supportFragmentManager, "")
+customLoader.show(supportFragmentManager)
 ```
 
-3) To hide the loader:
+3) To show the loader with custom color:
+```java
+val customLoader = CustomLoader.newInstance(this)
+customLoader.setLoaderColor(R.color.colorAccent)
+customLoader.show(supportFragmentManager
+```
+
+4) To show the loader and block the screen touches:
+```java
+val customLoader = CustomLoader.newInstance(this)
+customLoader.setBlockScreen(true)
+customLoader.show(supportFragmentManager)
+```
+
+5) To hide the loader:
 
 ```java
 customLoader.dismiss()
