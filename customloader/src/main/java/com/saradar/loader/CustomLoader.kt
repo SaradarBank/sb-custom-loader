@@ -1,7 +1,7 @@
 package com.saradar.loader
 
-import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -16,18 +16,18 @@ import kotlinx.android.synthetic.main.custom_loader_dialog.view.*
 
 class CustomLoader : DialogFragment() {
 
-    private lateinit var activity: Activity
     private var loaderColor: Int = 0
     private var loaderMessage: String = ""
     private var blockScreen: Boolean = false
 
     companion object {
 
+        private lateinit var context: Context
         private lateinit var customLoader: CustomLoader
 
-        fun newInstance(activity: Activity): CustomLoader {
+        fun newInstance(context: Context): CustomLoader {
             customLoader = CustomLoader()
-            customLoader.activity = activity
+            this.context = context
             return customLoader
         }
     }
@@ -95,7 +95,7 @@ class CustomLoader : DialogFragment() {
 
     // region "Overridden Functions"
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return object : Dialog(activity) {
+        return object : Dialog(context) {
             override fun onBackPressed() {
                 if (!blockScreen) {
                     super.onBackPressed()
