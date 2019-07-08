@@ -47,14 +47,12 @@ class CustomLoader : DialogFragment() {
         if (loaderMessage.isNotEmpty()) {
             view.tv_loaderMessage.visibility = View.VISIBLE
             view.tv_loaderMessage.text = loaderMessage
-            loaderMessage = ""
         }
         // endregion
 
         // region "Disable Screen Touch"
         enableScreenTouch()
         if (blockScreen) {
-            blockScreen = false
             disableScreenTouch()
         }
         // endregion
@@ -99,6 +97,12 @@ class CustomLoader : DialogFragment() {
                 }
             }
         }
+    }
+
+    override fun dismiss() {
+        blockScreen = false
+        loaderMessage = ""
+        super.dismiss()
     }
     // endregion
 
