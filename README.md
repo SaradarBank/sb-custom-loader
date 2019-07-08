@@ -1,5 +1,5 @@
 # Show-Loader-Library
-[![](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21#l21)	[![](https://img.shields.io/badge/Platform-Android-brightgreen.svg?style=flat)](https://developer.android.com/about)	[![](https://img.shields.io/badge/Language-Kotlin-brightgreen.svg?style=flat)](https://kotlinlang.org/)	[![](https://img.shields.io/badge/Version-0.2.0-brightgreen.svg?style=flat)](https://git-scm.com/book/en/v1/Getting-Started-About-Version-Control)
+[![](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21#l21)	[![](https://img.shields.io/badge/Platform-Android-brightgreen.svg?style=flat)](https://developer.android.com/about)	[![](https://img.shields.io/badge/Language-Kotlin-brightgreen.svg?style=flat)](https://kotlinlang.org/)	[![](https://img.shields.io/badge/Version-0.2.1-brightgreen.svg?style=flat)](https://git-scm.com/book/en/v1/Getting-Started-About-Version-Control)
 
 An Android library that shows a simple loader.
 
@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'com.github.SaradarBank:sb-custom-loader:0.2.0'
+	implementation 'com.github.SaradarBank:sb-custom-loader:0.2.1'
 }
 ```
 Or Maven:
@@ -28,7 +28,7 @@ Or Maven:
 <dependency>
 	<groupId>com.github.SaradarBank</groupId>
 	<artifactId>sb-custom-loader</artifactId>
-	<version>0.2.0</version>
+	<version>0.2.1</version>
 </dependency>
 ```
 
