@@ -2,7 +2,6 @@ package com.saradar.loader
 
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -36,6 +35,7 @@ class CustomLoader : DialogFragment() {
         val view = inflater.inflate(R.layout.custom_loader_dialog, null, false)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+
         // region "ProgressBar Color"
         if (loaderColor != 0) {
             view.pb_loader.indeterminateTintList = ColorStateList.valueOf(loaderColor)
@@ -43,14 +43,18 @@ class CustomLoader : DialogFragment() {
         // endregion
 
         // region "Loader Message"
+        view.tv_loaderMessage?.visibility = View.GONE
         if (loaderMessage.isNotEmpty()) {
             view.tv_loaderMessage.visibility = View.VISIBLE
             view.tv_loaderMessage.text = loaderMessage
+            loaderMessage = ""
         }
         // endregion
 
         // region "Disable Screen Touch"
+        enableScreenTouch()
         if (blockScreen) {
+            blockScreen = false
             disableScreenTouch()
         }
         // endregion
@@ -86,13 +90,6 @@ class CustomLoader : DialogFragment() {
         dialog.setCanceledOnTouchOutside(true)
     }
 
-    private fun resetFlagsToDefault() {
-        enableScreenTouch()
-        blockScreen = false
-        loaderMessage = ""
-        view?.tv_loaderMessage?.visibility = View.GONE
-    }
-
     // region "Overridden Functions"
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(context) {
@@ -102,11 +99,6 @@ class CustomLoader : DialogFragment() {
                 }
             }
         }
-    }
-
-    override fun onDismiss(dialog: DialogInterface?) {
-        super.onDismiss(dialog)
-        resetFlagsToDefault()
     }
     // endregion
 
