@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.saradar.loader.CustomLoader
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,12 +17,20 @@ class MainActivity : AppCompatActivity() {
             val customLoader = CustomLoader.newInstance(this)
             customLoader.setLoaderMessage("Please Wait")
             customLoader.setBlockScreen(true)
-            customLoader.show(supportFragmentManager)
+            customLoader.show(supportFragmentManager, "")
 
             val handler = Handler()
             handler.postDelayed({
                 customLoader.dismiss()
             }, 5000)
+        }
+
+        btn_showFragment.setOnClickListener {
+            val fragment = MainFragment()
+            val manager = supportFragmentManager
+            val transaction = manager.beginTransaction()
+            transaction.add(R.id.container, fragment)
+            transaction.commit()
         }
     }
 }
