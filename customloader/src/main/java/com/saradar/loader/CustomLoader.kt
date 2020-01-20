@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.custom_loader_dialog.view.*
 class CustomLoader : DialogFragment() {
 
     private var loaderColor: Int = 0
-    private var loaderMessage: String = ""
     private var blockScreen: Boolean = false
 
     companion object {
@@ -46,14 +45,6 @@ class CustomLoader : DialogFragment() {
         }
         // endregion
 
-        // region "Loader Message"
-        view.tv_loaderMessage?.visibility = View.GONE
-        if (loaderMessage.isNotEmpty()) {
-            view.tv_loaderMessage.visibility = View.VISIBLE
-            view.tv_loaderMessage.text = loaderMessage
-        }
-        // endregion
-
         // region "Disable Screen Touch"
         enableScreenTouch()
         if (blockScreen) {
@@ -67,10 +58,6 @@ class CustomLoader : DialogFragment() {
     // region "Setters"
     fun setLoaderColor(loaderColor: Int) {
         this.loaderColor = loaderColor
-    }
-
-    fun setLoaderMessage(loaderMessage: String) {
-        this.loaderMessage = loaderMessage
     }
 
     fun setBlockScreen(blockScreen: Boolean) {
@@ -105,7 +92,6 @@ class CustomLoader : DialogFragment() {
 
     override fun dismiss() {
         blockScreen = false
-        loaderMessage = ""
         super.dismiss()
     }
     // endregion

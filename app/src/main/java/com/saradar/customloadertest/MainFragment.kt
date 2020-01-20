@@ -20,7 +20,6 @@ class MainFragment : Fragment() {
 
         rootView.btn_show.setOnClickListener {
             val customLoader = CustomLoader.newInstance(activity!!.applicationContext)
-            customLoader.setLoaderMessage("Please Wait")
             customLoader.setBlockScreen(true)
             customLoader.show(fragmentManager!!, "")
 
