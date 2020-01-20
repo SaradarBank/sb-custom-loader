@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.saradar.loader.CustomLoader
-import kotlinx.android.synthetic.main.fragment_main.view.*
+import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
 
@@ -16,19 +16,21 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
+    }
 
-        rootView.btn_show.setOnClickListener {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        btn_show.setOnClickListener {
             val customLoader = CustomLoader.newInstance(activity!!.applicationContext)
             customLoader.setBlockScreen(true)
-            customLoader.show(fragmentManager!!, "")
+            customLoader.show(fragmentManager!!)
 
             val handler = Handler()
             handler.postDelayed({
                 customLoader.dismiss()
             }, 5000)
         }
-
-        return rootView
     }
 }
