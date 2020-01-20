@@ -11,14 +11,18 @@ import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val rootView = inflater.inflate(R.layout.fragment_main, container, false)
 
         rootView.btn_show.setOnClickListener {
             val customLoader = CustomLoader.newInstance(activity!!.applicationContext)
             customLoader.setLoaderMessage("Please Wait")
             customLoader.setBlockScreen(true)
-            customLoader.show(fragmentManager, "")
+            customLoader.show(fragmentManager!!, "")
 
             val handler = Handler()
             handler.postDelayed({
