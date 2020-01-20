@@ -2,7 +2,6 @@ package com.saradar.loader
 
 import android.app.Dialog
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -11,11 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import kotlinx.android.synthetic.main.custom_loader_dialog.view.*
 
 class CustomLoader : DialogFragment() {
 
-    private var loaderColor: Int = 0
     private var blockScreen: Boolean = false
 
     companion object {
@@ -38,13 +35,6 @@ class CustomLoader : DialogFragment() {
         val view = inflater.inflate(R.layout.custom_loader_dialog, null, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-
-        // region "ProgressBar Color"
-        if (loaderColor != 0) {
-            view.pb_loader.indeterminateTintList = ColorStateList.valueOf(loaderColor)
-        }
-        // endregion
-
         // region "Disable Screen Touch"
         enableScreenTouch()
         if (blockScreen) {
@@ -56,10 +46,6 @@ class CustomLoader : DialogFragment() {
     }
 
     // region "Setters"
-    fun setLoaderColor(loaderColor: Int) {
-        this.loaderColor = loaderColor
-    }
-
     fun setBlockScreen(blockScreen: Boolean) {
         this.blockScreen = blockScreen
     }
