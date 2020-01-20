@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
 
         btn_show.setOnClickListener {
             val customLoader = CustomLoader.newInstance(this)
-            customLoader.setLoaderMessage("Please Wait")
             customLoader.setBlockScreen(true)
             customLoader.show(supportFragmentManager, "")
 
