@@ -31,9 +31,13 @@ class CustomLoader : DialogFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.custom_loader_dialog, null, false)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
 
         // region "ProgressBar Color"
@@ -79,18 +83,18 @@ class CustomLoader : DialogFragment() {
     }
 
     private fun disableScreenTouch() {
-        dialog.setCancelable(false)
-        dialog.setCanceledOnTouchOutside(false)
+        dialog?.setCancelable(false)
+        dialog?.setCanceledOnTouchOutside(false)
     }
 
     private fun enableScreenTouch() {
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
+        dialog?.setCancelable(true)
+        dialog?.setCanceledOnTouchOutside(true)
     }
 
     // region "Overridden Functions"
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return object : Dialog(context) {
+        return object : Dialog(context!!) {
             override fun onBackPressed() {
                 if (!blockScreen) {
                     super.onBackPressed()
