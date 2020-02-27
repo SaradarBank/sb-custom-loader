@@ -52,7 +52,9 @@ class CustomLoader : DialogFragment() {
     // endregion
 
     fun show(fragmentManager: FragmentManager) {
-        customLoader.show(fragmentManager, "")
+        if (isAdded.not()) {
+            customLoader.show(fragmentManager, "")
+        }
     }
 
     private fun disableScreenTouch() {
