@@ -68,6 +68,15 @@ class CustomLoader : DialogFragment() {
     }
 
     // region "Overridden Functions"
+    override fun show(manager: FragmentManager, tag: String?) {
+        try {
+            val ft = manager.beginTransaction()
+            ft.add(this, tag)
+            ft.commitAllowingStateLoss()
+        } catch (ignored: IllegalStateException) {
+        }
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(context!!) {
             override fun onBackPressed() {
