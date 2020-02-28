@@ -52,7 +52,7 @@ class CustomLoader : DialogFragment() {
     // endregion
 
     fun show(fragmentManager: FragmentManager) {
-        if (isAdded.not()) {
+        if (isAdded.not() || isVisible.not()) {
             customLoader.show(fragmentManager, "")
         }
     }
@@ -69,12 +69,9 @@ class CustomLoader : DialogFragment() {
 
     // region "Overridden Functions"
     override fun show(manager: FragmentManager, tag: String?) {
-        try {
-            val ft = manager.beginTransaction()
-            ft.add(this, tag)
-            ft.commitAllowingStateLoss()
-        } catch (ignored: IllegalStateException) {
-        }
+        val ft = manager.beginTransaction()
+        ft.add(this, tag)
+        ft.commitAllowingStateLoss()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -12,15 +12,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val customLoader = CustomLoader.newInstance(this)
+
         btn_show.setOnClickListener {
-            val customLoader = CustomLoader.newInstance(this)
             customLoader.setBlockScreen(true)
             customLoader.show(supportFragmentManager)
 
             val handler = Handler()
             handler.postDelayed({
                 customLoader.dismiss()
-            }, 5000)
+            }, 2000)
         }
 
         btn_showFragment.setOnClickListener {
