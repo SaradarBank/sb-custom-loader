@@ -53,7 +53,9 @@ class CustomLoader : DialogFragment() {
             ft.remove(prev)
         }
         ft.addToBackStack(null)
-        customLoader.show(ft, "dialog")
+        if (isAdded.not() || isVisible.not()) {
+            customLoader.show(ft, "dialog")
+        }
     }
 
     private fun disableScreenTouch() {
