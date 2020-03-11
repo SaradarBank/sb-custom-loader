@@ -1,7 +1,6 @@
 package com.saradar.loader
 
 import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -13,16 +12,12 @@ import androidx.fragment.app.FragmentManager
 
 class CustomLoader : DialogFragment() {
 
-    private var blockScreen: Boolean = false
+    private var blockScreen = false
 
     companion object {
-
-        private lateinit var context: Context
-        private lateinit var customLoader: CustomLoader
-
-        fun newInstance(context: Context): CustomLoader {
+        lateinit var customLoader: CustomLoader
+        fun newInstance(): CustomLoader {
             customLoader = CustomLoader()
-            this.context = context
             return customLoader
         }
     }
@@ -35,7 +30,7 @@ class CustomLoader : DialogFragment() {
         val view = inflater.inflate(R.layout.custom_loader_dialog, null, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        // region "Disable Screen Touch"
+        // region "Enable/Disable Screen Touch"
         enableScreenTouch()
         if (blockScreen) {
             disableScreenTouch()
@@ -49,12 +44,16 @@ class CustomLoader : DialogFragment() {
     fun setBlockScreen(blockScreen: Boolean) {
         this.blockScreen = blockScreen
     }
-    // endregion
+    // endregion¬
 
     fun show(fragmentManager: FragmentManager) {
-        if (isAdded.not() || isVisible.not()) {
-            customLoader.show(fragmentManager, "")
+        val ft = fragmentManager.beginTransaction()
+        val prev = fragmentManager.findFragmentByTag("dialog")
+        if (prev != null) {
+            ft.remove(prev)
         }
+        ft.addToBackStack(null)
+        customLoader.show(ft, "dialog")
     }
 
     private fun disableScreenTouch() {
@@ -67,17 +66,11 @@ class CustomLoader : DialogFragment() {
         dialog?.setCanceledOnTouchOutside(true)
     }
 
-    // region "Overridden Functions"
-    override fun show(manager: FragmentManager, tag: String?) {
-        val ft = manager.beginTransaction()
-        ft.add(this, tag)
-        ft.commitAllowingStateLoss()
-    }
-
+    // region "Override Functions"
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(context!!) {
             override fun onBackPressed() {
-                if (!blockScreen) {
+                if (blockScreen.not()) {
                     super.onBackPressed()
                 }
             }
@@ -85,9 +78,8 @@ class CustomLoader : DialogFragment() {
     }
 
     override fun dismiss() {
-        blockScreen = false
         super.dismiss()
+        blockScreen = false
     }
     // endregion
-
 }

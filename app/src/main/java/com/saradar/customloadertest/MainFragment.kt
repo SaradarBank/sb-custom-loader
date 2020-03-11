@@ -23,7 +23,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_show.setOnClickListener {
-            val customLoader = CustomLoader.newInstance(activity!!.applicationContext)
+            val customLoader = CustomLoader.newInstance()
             customLoader.setBlockScreen(true)
             customLoader.show(fragmentManager!!)
 

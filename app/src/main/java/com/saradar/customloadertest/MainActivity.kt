@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val customLoader = CustomLoader.newInstance(this)
+        val customLoader = CustomLoader.newInstance()
 
         btn_show.setOnClickListener {
             customLoader.setBlockScreen(true)
