@@ -69,6 +69,9 @@ class CustomLoader : DialogFragment() {
     }
 
     // region "Override Functions"
+    override fun onSaveInstanceState(outState: Bundle) {
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(context!!) {
             override fun onBackPressed() {
