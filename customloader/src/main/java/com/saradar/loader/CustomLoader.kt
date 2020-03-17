@@ -44,17 +44,11 @@ class CustomLoader : DialogFragment() {
     fun setBlockScreen(blockScreen: Boolean) {
         this.blockScreen = blockScreen
     }
-    // endregion¬
+    // endregion
 
     fun show(fragmentManager: FragmentManager) {
-        val ft = fragmentManager.beginTransaction()
-        val prev = fragmentManager.findFragmentByTag("dialog")
-        if (prev != null) {
-            ft.remove(prev)
-        }
-        ft.addToBackStack(null)
         if (isAdded.not() || isVisible.not()) {
-            customLoader.show(ft, "dialog")
+            customLoader.show(fragmentManager, "dialog")
         }
     }
 
@@ -69,7 +63,10 @@ class CustomLoader : DialogFragment() {
     }
 
     // region "Override Functions"
-    override fun onSaveInstanceState(outState: Bundle) {
+    override fun show(manager: FragmentManager, tag: String?) {
+        val ft = manager.beginTransaction()
+        ft.add(this, tag)
+        ft.commitAllowingStateLoss()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
