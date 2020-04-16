@@ -1,6 +1,5 @@
 package com.saradar.loader
 
-import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -48,16 +47,18 @@ class CustomLoader : DialogFragment() {
 
     fun show(fragmentManager: FragmentManager) {
         if (isAdded.not() || isVisible.not()) {
-            customLoader.show(fragmentManager, "dialog")
+            customLoader.show(fragmentManager, "")
         }
     }
 
     private fun disableScreenTouch() {
+        this.isCancelable = false
         dialog?.setCancelable(false)
         dialog?.setCanceledOnTouchOutside(false)
     }
 
     private fun enableScreenTouch() {
+        this.isCancelable = true
         dialog?.setCancelable(true)
         dialog?.setCanceledOnTouchOutside(true)
     }
@@ -67,16 +68,6 @@ class CustomLoader : DialogFragment() {
         val ft = manager.beginTransaction()
         ft.add(this, tag)
         ft.commitAllowingStateLoss()
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return object : Dialog(context!!) {
-            override fun onBackPressed() {
-                if (blockScreen.not()) {
-                    super.onBackPressed()
-                }
-            }
-        }
     }
 
     override fun dismiss() {
