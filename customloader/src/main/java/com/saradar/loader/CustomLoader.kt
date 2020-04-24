@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 class CustomLoader : DialogFragment() {
 
     private var blockScreen = false
+    private var isShown = false
 
     companion object {
         lateinit var customLoader: CustomLoader
@@ -28,14 +29,6 @@ class CustomLoader : DialogFragment() {
     ): View? {
         val view = inflater.inflate(R.layout.custom_loader_dialog, null, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        // region "Enable/Disable Screen Touch"
-        enableScreenTouch()
-        if (blockScreen) {
-            disableScreenTouch()
-        }
-        // endregion
-
         return view
     }
 
@@ -46,9 +39,16 @@ class CustomLoader : DialogFragment() {
     // endregion
 
     fun show(fragmentManager: FragmentManager) {
-        if (isAdded.not() || isVisible.not()) {
+        if (isShown.not()) {
+            isShown = true
+            if (blockScreen) {
+                disableScreenTouch()
+            } else {
+                enableScreenTouch()
+            }
             customLoader.show(fragmentManager, "")
         }
+
     }
 
     private fun disableScreenTouch() {
@@ -73,6 +73,7 @@ class CustomLoader : DialogFragment() {
     override fun dismiss() {
         super.dismiss()
         blockScreen = false
+        isShown = false
     }
     // endregion
 }
