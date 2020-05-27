@@ -1,5 +1,6 @@
 package com.saradar.loader
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -22,6 +23,7 @@ class CustomLoader : DialogFragment() {
         }
     }
 
+    @SuppressLint("InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,6 +48,7 @@ class CustomLoader : DialogFragment() {
             } else {
                 enableScreenTouch()
             }
+            dialog?.setCanceledOnTouchOutside(false) // always cancel touches
             customLoader.show(fragmentManager, "")
         }
 
@@ -54,26 +57,29 @@ class CustomLoader : DialogFragment() {
     private fun disableScreenTouch() {
         this.isCancelable = false
         dialog?.setCancelable(false)
-        dialog?.setCanceledOnTouchOutside(false)
     }
 
     private fun enableScreenTouch() {
         this.isCancelable = true
         dialog?.setCancelable(true)
-        dialog?.setCanceledOnTouchOutside(true)
     }
 
     // region "Override Functions"
     override fun show(manager: FragmentManager, tag: String?) {
         val ft = manager.beginTransaction()
         ft.add(this, tag)
+        ft.addToBackStack(null)
         ft.commitAllowingStateLoss()
+        manager.executePendingTransactions()
     }
 
     override fun dismiss() {
         super.dismiss()
         blockScreen = false
         isShown = false
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
     }
     // endregion
 }
