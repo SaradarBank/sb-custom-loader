@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 
 class CustomLoader : DialogFragment() {
@@ -49,7 +50,7 @@ class CustomLoader : DialogFragment() {
                 enableScreenTouch()
             }
             dialog?.setCanceledOnTouchOutside(false) // always cancel touches
-            customLoader.show(fragmentManager, "")
+            customLoader.show(fragmentManager, "loader")
         }
 
     }
@@ -66,11 +67,14 @@ class CustomLoader : DialogFragment() {
 
     // region "Override Functions"
     override fun show(manager: FragmentManager, tag: String?) {
+        val fm: FragmentManager = manager
+        val oldFragment: Fragment? = fm.findFragmentByTag("loader")
+        if (oldFragment != null) {
+            fm.beginTransaction().remove(oldFragment).commit()
+        }
         val ft = manager.beginTransaction()
-        ft.add(this, tag)
-        ft.addToBackStack(null)
+        ft.add(this, "loader")
         ft.commitAllowingStateLoss()
-        manager.executePendingTransactions()
     }
 
     override fun dismiss() {
