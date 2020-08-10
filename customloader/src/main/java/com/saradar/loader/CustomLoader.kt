@@ -51,8 +51,10 @@ class CustomLoader : DialogFragment() {
             }
             dialog?.setCanceledOnTouchOutside(false) // always cancel touches
             customLoader.show(fragmentManager, "loader")
+        } else {
+            dismiss()
+            show(fragmentManager)
         }
-
     }
 
     private fun disableScreenTouch() {
