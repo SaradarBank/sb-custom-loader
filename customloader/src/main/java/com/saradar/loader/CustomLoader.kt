@@ -44,27 +44,14 @@ class CustomLoader : DialogFragment() {
     fun show(fragmentManager: FragmentManager) {
         if (isShown.not()) {
             isShown = true
-            if (blockScreen) {
-                disableScreenTouch()
-            } else {
-                enableScreenTouch()
-            }
+            this.isCancelable = blockScreen.not()
+            dialog?.setCancelable(blockScreen.not())
             dialog?.setCanceledOnTouchOutside(false) // always cancel touches
             customLoader.show(fragmentManager, "loader")
         } else {
-            dismiss()
+            dismissAllowingStateLoss()
             show(fragmentManager)
         }
-    }
-
-    private fun disableScreenTouch() {
-        this.isCancelable = false
-        dialog?.setCancelable(false)
-    }
-
-    private fun enableScreenTouch() {
-        this.isCancelable = true
-        dialog?.setCancelable(true)
     }
 
     // region "Override Functions"
@@ -81,6 +68,12 @@ class CustomLoader : DialogFragment() {
 
     override fun dismiss() {
         super.dismiss()
+        blockScreen = false
+        isShown = false
+    }
+
+    override fun dismissAllowingStateLoss() {
+        super.dismissAllowingStateLoss()
         blockScreen = false
         isShown = false
     }
